@@ -1,25 +1,61 @@
 
-\documentclass{article}
-\usepackage[T1]{fontenc}
-\usepackage{fontspec,xunicode,xltxtra}
-\begin{document}
+    \documentclass{article}
+    \usepackage[T1]{fontenc}
+    \usepackage{fontspec,xunicode,xltxtra}
+    \usepackage{tikz}
+    \usepackage{xcolor}
+    \definecolor{white}{RGB}{255,255,255}
+    \definecolor{darkgray}{HTML}{333333}
+    \definecolor{gray}{HTML}{4D4D4D}
+    \definecolor{lightgray}{HTML}{999999}
+    \definecolor{green}{HTML}{C2E15F}
+    \definecolor{orange}{HTML}{FDA333}
+    \definecolor{purple}{HTML}{D3A4F9}
+    \definecolor{red}{HTML}{FB4485}
+    \definecolor{blue}{HTML}{6CE0F1}
 
-\renewcommand\thesection{\titleFontdNzK{}\arabic{section}}
-\newfontfamily\titleFontdNzK[]{Bebas Neue}
-\newfontfamily\fontmwuA[]{Minion Pro}
-\section*{\titleFontdNzK{}Prova}
-{\fontmwuA{}
-    This is a prova $x+y$
-}
+    \begin{document}
+    
+\begin{tikzpicture}[remember picture,overlay]
+
+\newfontfamily\fontJozH[]{Minion Pro}
+\node [rectangle, fill=gray, anchor=north, minimum width=10cm, minimum height=3cm] (bgd) at
+(current page.north){
+\color{black}\fontJozH{} };
+
+\newfontfamily\fontciSZ[]{Minion Pro}
+\node [rectangle, anchor=south] (ex1) at
+(bgd.south){
+\color{white}\fontciSZ{} example };
+
+\newfontfamily\fontLwWC[]{Minion Pro}
+\node [rectangle, anchor=south] (nodeNameYcV) at
+(ex1.north){
+\color{white}\fontLwWC{} example2 };
+
+\newfontfamily\fontrJYw[]{Minion Pro}
+\node [rectangle, fill=gray, anchor=north, minimum width=\paperwidth, minimum height=3cm] (bgd2) at
+(current page.south){
+\color{black}\fontrJYw{} };
+\end{tikzpicture}
 
 
-\renewcommand\thesection{\titleFontxvqh{}\arabic{section}}
-\newfontfamily\titleFontxvqh[]{Minion Pro}
-\newfontfamily\fontBlnJ[]{Minion Pro}
-\section{\titleFontxvqh{}Prova}
-{\fontBlnJ{}
-    This is a prova
-}
+    \renewcommand\thesection{\titleFontHMno{}\arabic{section}}
+    \newfontfamily\titleFontHMno[]{Bebas Neue}
+    \newfontfamily\fontHgEp[]{Minion Pro}
+    \section*{\titleFontHMno{}Prova\hrulefill}
+    {\fontHgEp{}
+        This is a prova $x+y$
+    }
+    
 
-\end{document}
-
+    \renewcommand\thesection{\titleFontoYXO{}\arabic{section}}
+    \newfontfamily\titleFontoYXO[]{Minion Pro}
+    \newfontfamily\fontyPLG[]{Minion Pro}
+    \section{\titleFontoYXO{}Prova}
+    {\fontyPLG{}
+        This is a prova
+    }
+    
+    \end{document}
+    
