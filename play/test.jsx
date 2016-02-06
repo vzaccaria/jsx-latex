@@ -17,15 +17,26 @@ function addAs(a, key, value) {
     }
 }
 
+function defineNewFont(props) {
+    let Font     = _.get(props, "fontname", defaultfont);
+    let Color    = _.get(props, "fontcolor", "000000");
+    let Size = _.get(props, "fontsize", 1);
+    let FontUID  = `\\font${uid(4)}`
+    let FontCMD  = `\\newfontfamily${FontUID}[Scale=${Size},Color=${Color}]{${Font}}`
+    return { FontUID, FontCMD }
+}
+
+function getOpts(hd) {
+    return _.map(hd, (it) => it.key + "=" + it.value);
+}
+
 function node(props, ...rchildren) {
     let name     = _.get(props, "name", `nodeName${uid(3)}`);
-    let position = _.get(props, "relativeto", "current page.north");
+    let position = _.get(props, "to", "current page.north");
     let shape    = _.get(props, "shape", "rectangle");
     let color    = _.get(props, "color", "black");
 
-    let Font     = _.get(props, "font", defaultfont);
-    let FontUID  = `font${uid(4)}`
-    let FontCMD  = `\\newfontfamily\\${FontUID}[]{${Font}}`
+    let { FontUID, FontCMD }  = defineNewFont(props)
 
     let hd = []
 
@@ -33,14 +44,14 @@ function node(props, ...rchildren) {
     hd = addAs(hd, "anchor", _.get(props, "anchor", "north"));
     hd = addAs(hd, "minimum width", _.get(props, "minwidth"));
     hd = addAs(hd, "minimum height", _.get(props, "minheight"));
-    hd = _.map(hd, (it) => it.key + "=" + it.value);
+    hd = getOpts(hd)
     hd = ([ shape ].concat(hd)).join(", ")
 
         return `
 ${FontCMD}
 \\node [${hd}] (${name}) at
 (${position}){
-\\color{${color}}\\${FontUID}{}${rchildren.join('')}};`
+\\color{${color}}${FontUID}{}${rchildren.join('')}};`
 }
 
 function overlay(props, ...rchildren) {
@@ -76,28 +87,34 @@ function article(props, ...rchildren) {
     `;
 }
 
+function minipage(props, ...rchildren) {
+    let width = _.get(props, "width", '\\textwidth');
+    let align = _.get(props, "align", 'c');
+
+    return `\\noindent\\begin{minipage}[${align}]{${width}}${rchildren.join("")}\\end{minipage}`
+}
+
 function section(props, ...rchildren) {
-    let titleFont      = _.get(props, "style.title.font", defaultfont);
+    let { FontUID: titleFontUID, FontCMD: titleFontCMD } = defineNewFont(_.get(props, "style.title", {}))
+    let { FontUID: sectionFontUID, FontCMD: sectionFontCMD } = defineNewFont(_.get(props, "style", {}))
+
     let noNumbering    = _.get(props, "style.title.numbered", true);
     let hrulefill =    _.get(props, "style.title.hrulefill", false);
     let secModifier    = (noNumbering) ? '' : '*'
-    let titleFontUID   = `titleFont${uid(4)}`
 
-    let sectionFont    = _.get(props, "style.font", defaultfont);
-    let sectionFontUID = `font${uid(4)}`
     let hr = ""
     if(hrulefill) {
         hr='\\hrulefill'
     }
     return `
-    \\renewcommand\\thesection{\\${titleFontUID}{}\\arabic{section}}
-    \\newfontfamily\\${titleFontUID}[]{${titleFont}}
-    \\newfontfamily\\${sectionFontUID}[]{${sectionFont}}
-    \\section${secModifier}{\\${titleFontUID}{}${props.title}${hr}}
-    {\\${sectionFontUID}{}
-        ${rchildren.join("\n")}
-    }
-    `;
+\\renewcommand\\thesection{${titleFontUID}{}\\arabic{section}}
+${titleFontCMD}
+${sectionFontCMD}
+\\section${secModifier}{${titleFontUID}{}${props.title}${hr}}
+{${sectionFontUID}{}
+${rchildren.join("\n")}
+}
+`;
 }
 
 function hrule(props) {
@@ -134,31 +151,69 @@ let Reaxt = (function(){
     createComponent("hrule", hrule);
     createComponent("overlay", overlay);
     createComponent("node", node);
+    createComponent("minipage", minipage);
     return {
         createComponent, render, addNode
     }
 })();
 
 
-let title = { numbered: false, font: 'Bebas Neue', hrulefill: true }
+let title = { numbered: false, fontname: 'Bebas Neue', fontcolor: 'red', fontsize: 2, hrulefill: true }
 
-Reaxt.createComponent('header', (...props) => {
+Reaxt.createComponent('picture', (props) => {
+    let hd = []
+    hd = addAs(hd, "width", _.get(props, "width"));
+    hd = getOpts(hd).join(",")
+    let ig = `\\includegraphics[${hd}]{${props.src}}`
+    return (<node {...props} > {ig} </node>);
+})
+
+Reaxt.createComponent('header', (props) => {
     return (
         <overlay>
-            <node name="bgd" minwidth="10cm" minheight="3cm" fill="gray"> </node>
-            <node name="ex1" relativeto="bgd.south" color="white" anchor="south"> example </node>
-            <node relativeto="ex1.north" color="white" anchor="south"> example2 </node>
-            <node name="bgd2" relativeto="current page.south" minwidth="\paperwidth" minheight="3cm" fill="gray"> </node>
+            <node anchor="north" to="current page.north" name="bgd" minwidth="\paperwidth" minheight="3cm" fill="gray"> </node>
+            <node anchor="north" to="current page.south" minwidth="\paperwidth" minheight="3cm" fill="gray"> </node>
+
+            <picture anchor="south" to="bgd.south"  src="avatar-vz.jpg" width="1cm" />
+            <node    anchor="north" to="bgd.center"  name="ex1" color="white" >
+
+
+            </node>
+            <node    anchor="south" to="ex1.north"  name="ex2" color="white" > example2 </node>
+
         </overlay>);
 })
 
 Reaxt.render(
     <article>
         <header />
+        <minipage width="4cm" align="t">
         <section title="Prova" style={{title}}>
             This is a prova $x+y$
-
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
         </section>
+        </minipage>
+        <minipage width="10cm" align="t">
+        <section title="Prova" style={{title}}>
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
+        </section>
+        </minipage>
+        <minipage width="2cm">
+        <section title="Prova" style={{title}}>
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
+            This is a prova $x+y$
+        </section>
+        </minipage>
         <section title="Prova" >
             This is a prova
 

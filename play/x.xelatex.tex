@@ -18,44 +18,67 @@
     
 \begin{tikzpicture}[remember picture,overlay]
 
-\newfontfamily\fontJozH[]{Minion Pro}
-\node [rectangle, fill=gray, anchor=north, minimum width=10cm, minimum height=3cm] (bgd) at
+\newfontfamily\fontTxAz[Scale=1,Color=000000]{Minion Pro}
+\node [rectangle, fill=gray, anchor=north, minimum width=\paperwidth, minimum height=3cm] (bgd) at
 (current page.north){
-\color{black}\fontJozH{} };
+\color{black}\fontTxAz{} };
 
-\newfontfamily\fontciSZ[]{Minion Pro}
-\node [rectangle, anchor=south] (ex1) at
-(bgd.south){
-\color{white}\fontciSZ{} example };
-
-\newfontfamily\fontLwWC[]{Minion Pro}
-\node [rectangle, anchor=south] (nodeNameYcV) at
-(ex1.north){
-\color{white}\fontLwWC{} example2 };
-
-\newfontfamily\fontrJYw[]{Minion Pro}
-\node [rectangle, fill=gray, anchor=north, minimum width=\paperwidth, minimum height=3cm] (bgd2) at
+\newfontfamily\fonthRZg[Scale=1,Color=000000]{Minion Pro}
+\node [rectangle, fill=gray, anchor=north, minimum width=\paperwidth, minimum height=3cm] (nodeNamexhn) at
 (current page.south){
-\color{black}\fontrJYw{} };
+\color{black}\fonthRZg{} };
+
+\newfontfamily\fontCkjK[Scale=1,Color=000000]{Minion Pro}
+\node [rectangle, anchor=south] (nodeNameXVG) at
+(bgd.south){
+\color{black}\fontCkjK{} \includegraphics[width=1cm]{avatar-vz.jpg} };
+
+\newfontfamily\fontrpzi[Scale=1,Color=000000]{Minion Pro}
+\node [rectangle, anchor=north] (ex1) at
+(bgd.center){
+\color{white}\fontrpzi{}};
+
+\newfontfamily\fontrRtE[Scale=1,Color=000000]{Minion Pro}
+\node [rectangle, anchor=south] (ex2) at
+(ex1.north){
+\color{white}\fontrRtE{} example2 };
 \end{tikzpicture}
 
+\noindent\begin{minipage}[t]{4cm}
+\renewcommand\thesection{\fontUEPr{}\arabic{section}}
+\newfontfamily\fontUEPr[Scale=2,Color=red]{Bebas Neue}
+\newfontfamily\fontgKwZ[Scale=1,Color=000000]{Minion Pro}
+\section*{\fontUEPr{}Prova\hrulefill}
+{\fontgKwZ{}
+This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
+}
+\end{minipage}
+\noindent\begin{minipage}[t]{10cm}
+\renewcommand\thesection{\fontZtTi{}\arabic{section}}
+\newfontfamily\fontZtTi[Scale=2,Color=red]{Bebas Neue}
+\newfontfamily\fontnDyZ[Scale=1,Color=000000]{Minion Pro}
+\section*{\fontZtTi{}Prova\hrulefill}
+{\fontnDyZ{}
+This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
+}
+\end{minipage}
+\noindent\begin{minipage}[c]{2cm}
+\renewcommand\thesection{\fontlnUJ{}\arabic{section}}
+\newfontfamily\fontlnUJ[Scale=2,Color=red]{Bebas Neue}
+\newfontfamily\fontDmyn[Scale=1,Color=000000]{Minion Pro}
+\section*{\fontlnUJ{}Prova\hrulefill}
+{\fontDmyn{}
+This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
+}
+\end{minipage}
 
-    \renewcommand\thesection{\titleFontHMno{}\arabic{section}}
-    \newfontfamily\titleFontHMno[]{Bebas Neue}
-    \newfontfamily\fontHgEp[]{Minion Pro}
-    \section*{\titleFontHMno{}Prova\hrulefill}
-    {\fontHgEp{}
-        This is a prova $x+y$
-    }
-    
+\renewcommand\thesection{\fontlkiA{}\arabic{section}}
+\newfontfamily\fontlkiA[Scale=1,Color=000000]{Minion Pro}
+\newfontfamily\fonthmHE[Scale=1,Color=000000]{Minion Pro}
+\section{\fontlkiA{}Prova}
+{\fonthmHE{}
+This is a prova
+}
 
-    \renewcommand\thesection{\titleFontoYXO{}\arabic{section}}
-    \newfontfamily\titleFontoYXO[]{Minion Pro}
-    \newfontfamily\fontyPLG[]{Minion Pro}
-    \section{\titleFontoYXO{}Prova}
-    {\fontyPLG{}
-        This is a prova
-    }
-    
     \end{document}
     
