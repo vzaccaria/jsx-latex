@@ -1,0 +1,25 @@
+
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec,xunicode,xltxtra}
+\begin{document}
+
+\renewcommand\thesection{\titleFontdNzK{}\arabic{section}}
+\newfontfamily\titleFontdNzK[]{Bebas Neue}
+\newfontfamily\fontmwuA[]{Minion Pro}
+\section*{\titleFontdNzK{}Prova}
+{\fontmwuA{}
+    This is a prova $x+y$
+}
+
+
+\renewcommand\thesection{\titleFontxvqh{}\arabic{section}}
+\newfontfamily\titleFontxvqh[]{Minion Pro}
+\newfontfamily\fontBlnJ[]{Minion Pro}
+\section{\titleFontxvqh{}Prova}
+{\fontBlnJ{}
+    This is a prova
+}
+
+\end{document}
+
