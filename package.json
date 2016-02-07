@@ -2,7 +2,7 @@
   "name": "jsx-latex",
   "version": "0.0.1",
   "description": "render jsx to latex",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "make test"
   },
