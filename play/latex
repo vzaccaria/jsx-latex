@@ -1,0 +1,40 @@
+\[remember picture,overlay\]
+
+(bgd) at (current page.north)<span> </span>;
+
+(nodeNamevXk) at (current page.south)<span> </span>;
+
+(nodeNameiyk) at (bgd.south)<span> ![image](avatar-vz.jpg) </span>;
+
+(ex1) at (bgd.center)<span> cips </span>;
+
+(ex2) at (ex1.north)<span> example2 </span>;
+
+\[t\]<span>4cm</span>![image](avatar-vz.jpg)
+
+Prova {#prova .unnumbered}
+=====
+
+<span> This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
+This is a prova $x+y$ This is a prova $x+y$ </span>
+
+\[t\]<span>10cm</span>
+
+Prova {#prova-1 .unnumbered}
+=====
+
+<span> This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
+This is a prova $x+y$ This is a prova $x+y$ </span>
+
+\[c\]<span>2cm</span>
+
+Prova {#prova-2 .unnumbered}
+=====
+
+<span> This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
+This is a prova $x+y$ This is a prova $x+y$ </span>
+
+Prova
+=====
+
+<span> This is a prova </span>

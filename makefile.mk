@@ -5,3 +5,6 @@ JS_MAIN_SRC = index.js
 include ~/.make/bplt-module.make
 
 all: $(JS_BABEL_TGT) $(JS_MAIN_TGT) $(JS_DOCS_TGT) $(MD_README_TGT)
+
+test: all
+	./tests/test.sh

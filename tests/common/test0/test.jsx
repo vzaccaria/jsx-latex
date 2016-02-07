@@ -1,6 +1,6 @@
 /** @jsx Reaxt.addNode*/
 
-let Reaxt = require('../main');
+let Reaxt = require('../../../main');
 let _ = require('lodash')
 
 

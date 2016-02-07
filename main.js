@@ -1,14 +1,16 @@
-var shelljs = require('shelljs');
-var promise = require('bluebird');
-var _ = require('lodash');
+let Reaxt = require('./dist/lib');
 
-var _module = () => {
+/**
+*
+* * `Reaxt.createComponent(tagname, body)`: creates a new tag with
+* the corresponding rendering function.
+*
+* * `Reaxt.render(tag)`: renders the tag to stdout.
+*
+* ## Usage
+*
+* Just put a comment with `@jsx Reaxt.addNode` at the
+* beginning of your file
+*/
 
-  var foo = () => {};
-
-  return {
-    foo
-  };
-};
-
-module.exports = _module();
+module.exports = Reaxt;

@@ -14,7 +14,17 @@ TBD
 
 <!-- Start main.js -->
 
-## shelljs
+## exports
+
+* `Reaxt.createComponent(tagname, body)`: creates a new tag with
+the corresponding rendering function.
+
+* `Reaxt.render(tag)`: renders the tag to stdout.
+
+## Usage
+
+Just put a comment with `@jsx Reaxt.addNode` at the
+beginning of your file
 
 <!-- End main.js -->
 

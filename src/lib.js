@@ -1,6 +1,10 @@
 /** @jsx Reaxt.addNode*/
 
+let seedrandom = require('seedrandom')
+seedrandom('hello.', { global: true });
+
 let _ = require('lodash');
+
 
 let defaultfont = "Minion Pro"
 
@@ -10,20 +14,24 @@ let uid = (n) => {
 }
 
 function addAs(a, key, value) {
-    if(!_.isUndefined(value)) {
-        return a.concat([{key, value}]);
+    if (!_.isUndefined(value)) {
+        return a.concat([{
+            key, value
+        }]);
     } else {
         return a
     }
 }
 
 function defineNewFont(props) {
-    let Font     = _.get(props, "fontname", defaultfont);
-    let Color    = _.get(props, "fontcolor", "000000");
+    let Font = _.get(props, "fontname", defaultfont);
+    let Color = _.get(props, "fontcolor", "000000");
     let Size = _.get(props, "fontsize", 1);
-    let FontUID  = `\\font${uid(4)}`
-    let FontCMD  = `\\newfontfamily${FontUID}[Scale=${Size},Color=${Color}]{${Font}}`
-    return { FontUID, FontCMD }
+    let FontUID = `\\font${uid(4)}`
+    let FontCMD = `\\newfontfamily${FontUID}[Scale=${Size},Color=${Color}]{${Font}}`
+    return {
+        FontUID, FontCMD
+    }
 }
 
 function getOpts(hd) {
@@ -31,12 +39,14 @@ function getOpts(hd) {
 }
 
 function node(props, ...rchildren) {
-    let name     = _.get(props, "name", `nodeName${uid(3)}`);
+    let name = _.get(props, "name", `nodeName${uid(3)}`);
     let position = _.get(props, "to", "current page.north");
-    let shape    = _.get(props, "shape", "rectangle");
-    let color    = _.get(props, "color", "black");
+    let shape = _.get(props, "shape", "rectangle");
+    let color = _.get(props, "color", "black");
 
-    let { FontUID, FontCMD }  = defineNewFont(props)
+    let {
+        FontUID, FontCMD
+    } = defineNewFont(props)
 
     let hd = []
 
@@ -45,9 +55,9 @@ function node(props, ...rchildren) {
     hd = addAs(hd, "minimum width", _.get(props, "minwidth"));
     hd = addAs(hd, "minimum height", _.get(props, "minheight"));
     hd = getOpts(hd)
-    hd = ([ shape ].concat(hd)).join(", ")
+    hd = ([shape].concat(hd)).join(", ")
 
-        return `
+    return `
 ${FontCMD}
 \\node [${hd}] (${name}) at
 (${position}){
@@ -96,16 +106,22 @@ function minipage(props, ...rchildren) {
 }
 
 function section(props, ...rchildren) {
-    let { FontUID: titleFontUID, FontCMD: titleFontCMD } = defineNewFont(_.get(props, "style.title", {}))
-    let { FontUID: sectionFontUID, FontCMD: sectionFontCMD } = defineNewFont(_.get(props, "style", {}))
+    let {
+        FontUID: titleFontUID,
+        FontCMD: titleFontCMD
+    } = defineNewFont(_.get(props, "style.title", {}))
+    let {
+        FontUID: sectionFontUID,
+        FontCMD: sectionFontCMD
+    } = defineNewFont(_.get(props, "style", {}))
 
-    let noNumbering    = _.get(props, "style.title.numbered", true);
-    let hrulefill =    _.get(props, "style.title.hrulefill", false);
-    let secModifier    = (noNumbering) ? '' : '*'
+    let noNumbering = _.get(props, "style.title.numbered", true);
+    let hrulefill = _.get(props, "style.title.hrulefill", false);
+    let secModifier = (noNumbering) ? '' : '*'
 
     let hr = ""
-    if(hrulefill) {
-        hr='\\hrulefill'
+    if (hrulefill) {
+        hr = '\\hrulefill'
     }
     return `
 \\renewcommand\\thesection{${titleFontUID}{}\\arabic{section}}
@@ -125,28 +141,34 @@ function hrule(props) {
 }
 
 
-let Reaxt = (function(){
-    let state = { tags: [] }
+let Reaxt = (function() {
+    let state = {
+        tags: []
+    }
 
     let createComponent = (function(tag, body) {
-        this.tags = _.concat(this.tags, [{tag, body}]);
+        this.tags = _.concat(this.tags, [{
+            tag, body
+        }]);
     }).bind(state)
 
     let addNode = (function(tag, props, ...rchildren) {
-        if(_.isUndefined(tag)) {
+        if (_.isUndefined(tag)) {
             return "";
         } else {
-            let tg = (_.find(this.tags, (it) => it.tag === tag ))
-            if(!_.isUndefined(tg)) {
+            let tg = (_.find(this.tags, (it) => it.tag === tag))
+            if (!_.isUndefined(tg)) {
                 return tg.body(props, ...rchildren)
             } else {
                 throw `Undefined tag '${tag}'`;
-                }
+            }
         }
     }).bind(state)
+
     let render = function(dom) {
         console.log(dom);
     }
+
     createComponent("article", article);
     createComponent("section", section);
     createComponent("hrule", hrule);
