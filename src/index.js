@@ -1,4 +1,5 @@
 let Reaxt = require('./dist/lib')
+require('./dist/latex');
 
 /**
 *

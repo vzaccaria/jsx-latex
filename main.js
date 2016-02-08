@@ -1,4 +1,7 @@
-let Reaxt = require('./dist/lib');
+'use strict';
+
+var Reaxt = require('./dist/lib');
+require('./dist/latex');
 
 /**
 *

@@ -12,4 +12,4 @@ npm=$bindir/node_modules/.bin
 rm -f $srcdir/output
 
 $npm/babel-node $srcdir/test.jsx > "$srcdir/output"
-"$npm/diff-files" -m "Test grade generation       :" "$srcdir/output" "$srcdir/reference"
+"$npm/diff-files" -m "Test simple xelatex         :" "$srcdir/output" "$srcdir/reference"
