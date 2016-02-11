@@ -2,18 +2,22 @@
 
 let _ = require('lodash')
 let Reaxt = require('./lib')
-let { uid, defineNewFont, addAs, getOpts } = Reaxt
+let {
+    uid, defineNewFont, addAs, getOpts
+} = Reaxt
 
 
 
 function article(props, ...rchildren) {
     let geometry = _.get(props, "geometry", "");
+    let preamble = _.get(props, "preamble", "");
     return `
     \\documentclass{article}
     \\usepackage[T1]{fontenc}
     \\usepackage{fontspec,xunicode,xltxtra}
     \\usepackage{tikz}
     \\usepackage{xcolor}
+    \\usepackage{setspace}
     \\definecolor{white}{RGB}{255,255,255}
     \\definecolor{darkgray}{HTML}{333333}
     \\definecolor{gray}{HTML}{4D4D4D}
@@ -23,18 +27,57 @@ function article(props, ...rchildren) {
     \\definecolor{purple}{HTML}{D3A4F9}
     \\definecolor{red}{HTML}{FB4485}
     \\definecolor{blue}{HTML}{6CE0F1}
-    \\usepackage[${geometry}]{geometry}
+    \\usepackage[${geometry}]{geometry}${preamble}
     \\begin{document}
     ${rchildren.join("\n")}
     \\end{document}
     `;
 }
 
+
+function envgen(tag) {
+    return function(props, ...rchildren) {
+        return `\\begin{${tag}}{${rchildren.join("")}}\\end{${tag}}`
+    }
+}
+
+function txtgen(tag) {
+    return function(props, ...rchildren) {
+        return `\\${tag}{${rchildren.join("")}}`
+    }
+}
+
+function vspace(props) {
+    let space = _.get(props, "space", "0pt");
+    return `\\vspace{${space}}`
+}
+
+function text(props, ...rchildren) {
+    let {
+        FontUID, FontCMD
+    } = defineNewFont(_.get(props, "style", {}))
+    if (_.isUndefined(FontCMD)) {
+        return `\\noindent${rchildren.join("")}`
+    } else {
+        return `${FontCMD}\\noindent{${FontUID}{}${rchildren.join("")}}`
+    }
+}
+
+function br() {
+    return `\\newline`
+}
+
 function minipage(props, ...rchildren) {
     let width = _.get(props, "width", '\\textwidth');
     let align = _.get(props, "align", 'c');
-
-    return `\\noindent\\begin{minipage}[${align}]{${width}}${rchildren.join("")}\\end{minipage}`
+    let {
+        FontUID, FontCMD
+    } = defineNewFont(_.get(props, "style", {}))
+    if (_.isUndefined(FontCMD)) {
+        return `\\noindent\\begin{minipage}[${align}]{${width}}${rchildren.join("")}\\end{minipage}`
+    } else {
+        return `${FontCMD}\\noindent\\begin{minipage}[${align}]{${width}}${FontUID}{}${rchildren.join("")}\\end{minipage}`
+    }
 }
 
 function section(props, ...rchildren) {
@@ -85,5 +128,35 @@ Reaxt.createComponent("hrule", hrule);
 Reaxt.createComponent("article", article);
 Reaxt.createComponent("section", section);
 Reaxt.createComponent("minipage", minipage);
+Reaxt.createComponent("text", text);
+Reaxt.createComponent("br", br);
+Reaxt.createComponent("smallcaps", txtgen('textsc'));
+Reaxt.createComponent("bold", txtgen('textbf'));
+Reaxt.createComponent("italic", txtgen('emph'));
+Reaxt.createComponent("vspace", vspace);
+
+_.map(["tiny",
+    "footnotesize",
+    "scriptsize",
+    "small",
+    "normalsize",
+    "large",
+    "Large",
+    "LARGE",
+    "huge",
+    "Huge",
+    "centering",
+    "item",
+    "emph"
+], (it) => {
+    Reaxt.createComponent(it, txtgen(it));
+})
+
+_.map(["itemize",
+    "enumerate",
+    "description"
+], (it) => {
+    Reaxt.createComponent(it, envgen(it));
+})
 
 module.exports = Reaxt
