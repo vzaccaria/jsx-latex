@@ -12,6 +12,20 @@ let uid = (n) => {
     return _.sampleSize(possible, n).join('');
 }
 
+function parse(props) {
+    let o = { hd: [ ], props: props }
+    function accepts(n) {
+        this.hd = addAs(this.hd, n, _.get(this.props, n))
+        return this
+    }
+    function get() {
+        return getOpts(this.hd).join(', ')
+    }
+    o.accepts = accepts.bind(o)
+    o.get = get.bind(o)
+    return o
+}
+
 function addAs(a, key, value) {
     if (!_.isUndefined(value)) {
         return a.concat([{
@@ -67,7 +81,7 @@ let Reaxt = (function() {
     }
 
     return {
-        createComponent, render, addNode, uid, addAs, getOpts, defineNewFont
+        createComponent, render, addNode, uid, addAs, getOpts, defineNewFont, parse
     }
 })();
 

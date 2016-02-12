@@ -6,7 +6,7 @@ let { uid, defineNewFont, addAs, getOpts } = Reaxt
 
 function node(props, ...rchildren) {
     let name = _.get(props, "name", `nodeName${uid(3)}`);
-    let position = _.get(props, "to", "current page.north");
+    let position = _.get(props, "to", "at (current page.north)");
     let shape = _.get(props, "shape", "rectangle");
     let color = _.get(props, "color", "black");
 
@@ -25,8 +25,7 @@ function node(props, ...rchildren) {
 
     return `
 ${FontCMD}
-\\node [${hd}] (${name}) at
-(${position}){
+\\node [${hd}] (${name}) ${position}{
 \\color{${color}}${FontUID}{}${rchildren.join('')}};`
 }
 
@@ -38,9 +37,18 @@ ${rchildren.join('\n')}
 `;
 }
 
+function tikz(props, ...rchildren) {
+    return `
+\\begin{tikzpicture}
+${rchildren.join('\n')}
+\\end{tikzpicture}
+`;
+}
+
 
 
 Reaxt.createComponent("overlay", overlay);
 Reaxt.createComponent("node", node);
+Reaxt.createComponent("tikz", tikz);
 
 module.exports = Reaxt

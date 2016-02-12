@@ -5,6 +5,7 @@
     \usepackage{tikz}
     \usepackage{xcolor}
     \usepackage{setspace}
+    \usepackage{enumitem}
     \definecolor{white}{RGB}{255,255,255}
     \definecolor{darkgray}{HTML}{333333}
     \definecolor{gray}{HTML}{4D4D4D}
@@ -20,28 +21,23 @@
 \begin{tikzpicture}[remember picture,overlay]
 
 \newfontfamily\fontMEir[Scale=1,Color=000000]{Minion Pro}
-\node [rectangle, fill=gray, anchor=north, minimum width=\paperwidth, minimum height=4cm] (bgd) at
-(current page.north){
+\node [rectangle, fill=gray, anchor=north, minimum width=\paperwidth, minimum height=4cm] (bgd) at (current page.north){
 \color{black}\fontMEir{} };
 
 \newfontfamily\fontxIoS[Scale=1,Color=000000]{Minion Pro}
-\node [rectangle, fill=gray, anchor=south, minimum width=\paperwidth, minimum height=5cm] (nodeNamepAl) at
-(current page.south){
+\node [rectangle, fill=gray, anchor=south, minimum width=\paperwidth, minimum height=5cm] (nodeNamepAl) at (current page.south){
 \color{black}\fontxIoS{} };
 
 \newfontfamily\fontISWv[Scale=1,Color=000000]{Minion Pro}
-\node [rectangle, anchor=south] (nodeNameZMF) at
-(bgd.south){
+\node [rectangle, anchor=south] (nodeNameZMF) at (bgd.south){
 \color{black}\fontISWv{} \includegraphics[width=1cm]{avatar-vz.jpg} };
 
 \newfontfamily\fontgvrm[Scale=1,Color=000000]{Minion Pro}
-\node [rectangle, anchor=north] (ex1) at
-(bgd.center){
+\node [rectangle, anchor=north] (ex1) at (bgd.center){
 \color{white}\fontgvrm{} cips };
 
 \newfontfamily\fontKXhI[Scale=1,Color=000000]{Minion Pro}
-\node [rectangle, anchor=south] (ex2) at
-(ex1.north){
+\node [rectangle, anchor=south] (ex2) at (ex1.north){
 \color{white}\fontKXhI{} example2 };
 \end{tikzpicture}
 
@@ -81,5 +77,6 @@ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prov
 This is a prova
 }
 
+\begin{itemize}[leftmargin=*]{\item{ ciao }}\end{itemize}
     \end{document}
     

@@ -3,7 +3,7 @@
 let _ = require('lodash')
 let Reaxt = require('./lib')
 let {
-    uid, defineNewFont, addAs, getOpts
+    uid, defineNewFont, addAs, getOpts, parse
 } = Reaxt
 
 
@@ -18,6 +18,7 @@ function article(props, ...rchildren) {
     \\usepackage{tikz}
     \\usepackage{xcolor}
     \\usepackage{setspace}
+    \\usepackage{enumitem}
     \\definecolor{white}{RGB}{255,255,255}
     \\definecolor{darkgray}{HTML}{333333}
     \\definecolor{gray}{HTML}{4D4D4D}
@@ -34,6 +35,17 @@ function article(props, ...rchildren) {
     `;
 }
 
+function itemize(tag) {
+    return function(props, ...rchildren) {
+        let hd = parse(props)
+            .accepts("leftmargin")
+            .accepts("itemsep")
+            .accepts("topsep")
+            .accepts("partopsep")
+            .get()
+        return `\\begin{${tag}}[${hd}]{${rchildren.join("")}}\\end{${tag}}`
+    }
+}
 
 function envgen(tag) {
     return function(props, ...rchildren) {
@@ -117,9 +129,7 @@ function hrule(props) {
 
 
 Reaxt.createComponent('image', (props) => {
-    let hd = []
-    hd = addAs(hd, "width", _.get(props, "width"));
-    hd = getOpts(hd).join(",")
+    let hd = parse(props).accepts('width').get()
     let ig = `\\includegraphics[${hd}]{${props.src}}`
     return (ig);
 })
@@ -156,7 +166,7 @@ _.map(["itemize",
     "enumerate",
     "description"
 ], (it) => {
-    Reaxt.createComponent(it, envgen(it));
+    Reaxt.createComponent(it, itemize(it));
 })
 
 module.exports = Reaxt

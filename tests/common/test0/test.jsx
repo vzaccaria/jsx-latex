@@ -32,12 +32,11 @@ Reaxt.createComponent('picture', (props) => {
 Reaxt.createComponent('header', (props) => {
     return (
         <overlay>
-            <node anchor="north" to="current page.north" name="bgd" minwidth="\paperwidth" minheight="4cm" fill="gray"> </node>
-            <node anchor="south" to="current page.south" minwidth="\paperwidth" minheight="5cm" fill="gray"> </node>
-
-            <picture anchor="south" to="bgd.south"  src="avatar-vz.jpg" width="1cm" />
-            <node    anchor="north" to="bgd.center"  name="ex1" color="white" > cips </node>
-            <node    anchor="south" to="ex1.north"  name="ex2" color="white" > example2 </node>
+            <node anchor="north"    to="at (current page.north)" name="bgd" minwidth="\paperwidth" minheight="4cm" fill="gray"> </node>
+            <node anchor="south"    to="at (current page.south)" minwidth="\paperwidth" minheight="5cm" fill="gray"> </node>
+            <picture anchor="south" to="at (bgd.south)"  src="avatar-vz.jpg" width="1cm" />
+            <node    anchor="north" to="at (bgd.center)"  name="ex1" color="white" > cips </node>
+            <node    anchor="south" to="at (ex1.north)"  name="ex2" color="white" > example2 </node>
 
         </overlay>);
 })
@@ -77,5 +76,8 @@ Reaxt.render(
             This is a prova
 
         </section>
+        <itemize leftmargin="*" >
+                 <item> ciao </item>
+                 </itemize>
     </article>
 );
