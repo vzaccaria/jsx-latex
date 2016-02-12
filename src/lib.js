@@ -12,17 +12,26 @@ let uid = (n) => {
     return _.sampleSize(possible, n).join('');
 }
 
-function parse(props) {
-    let o = { hd: [ ], props: props }
+function parse(props, pre) {
+    let o = { hd: [], props: props, pre: pre }
+    function acceptsAs(n0, n1) {
+        this.hd = addAs(this.hd, n1, _.get(this.props, n0))
+        return this
+    }
     function accepts(n) {
         this.hd = addAs(this.hd, n, _.get(this.props, n))
         return this
     }
     function get() {
-        return getOpts(this.hd).join(', ')
+        if(!_.isUndefined(this.pre)) {
+            return [ this.pre ].concat(getOpts(this.hd)).join(', ')
+        } else {
+            return getOpts(this.hd).join(', ')
+        }
     }
     o.accepts = accepts.bind(o)
     o.get = get.bind(o)
+    o.acceptsAs = acceptsAs.bind(o)
     return o
 }
 

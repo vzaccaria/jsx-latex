@@ -2,31 +2,34 @@
 
 let _ = require('lodash')
 let Reaxt = require('./lib')
-let { uid, defineNewFont, addAs, getOpts } = Reaxt
+let {
+    uid, defineNewFont, parse
+} = Reaxt
 
-function node(props, ...rchildren) {
-    let name = _.get(props, "name", `nodeName${uid(3)}`);
-    let position = _.get(props, "to", "at (current page.north)");
-    let shape = _.get(props, "shape", "rectangle");
-    let color = _.get(props, "color", "black");
+function genShape(shape) {
+    return function(props, ...rchildren) {
+        let name = _.get(props, "name", `nodeName${uid(3)}`);
+        let position = _.get(props, "attach", "at (current page.north)");
+        let color = _.get(props, "color", "black");
+        props.draw = _.get(props, "draw", "black");
 
-    let {
-        FontUID, FontCMD
-    } = defineNewFont(props)
+        let {
+            FontUID, FontCMD
+        } = defineNewFont(props)
 
-    let hd = []
+        let hd = parse(props, shape)
+            .accepts("fill")
+            .accepts("draw")
+            .accepts("anchor")
+            .acceptsAs("minwidth", "minimum width")
+            .acceptsAs("minheight", "minimum height")
+            .get();
 
-    hd = addAs(hd, "fill", _.get(props, "fill"));
-    hd = addAs(hd, "anchor", _.get(props, "anchor", "north"));
-    hd = addAs(hd, "minimum width", _.get(props, "minwidth"));
-    hd = addAs(hd, "minimum height", _.get(props, "minheight"));
-    hd = getOpts(hd)
-    hd = ([shape].concat(hd)).join(", ")
-
-    return `
+        return `
 ${FontCMD}
 \\node [${hd}] (${name}) ${position}{
 \\color{${color}}${FontUID}{}${rchildren.join('')}};`
+    }
 }
 
 function overlay(props, ...rchildren) {
@@ -48,7 +51,9 @@ ${rchildren.join('\n')}
 
 
 Reaxt.createComponent("overlay", overlay);
-Reaxt.createComponent("node", node);
+Reaxt.createComponent("node", genShape());
+Reaxt.createComponent("circle", genShape("circle"));
+Reaxt.createComponent("rectangle", genShape("rectangle"));
 Reaxt.createComponent("tikz", tikz);
 
 module.exports = Reaxt
