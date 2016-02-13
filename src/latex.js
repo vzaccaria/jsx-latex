@@ -76,7 +76,7 @@ function text(props, ...rchildren) {
 }
 
 function br() {
-    return `\\newline`
+    return `\\newline{}`
 }
 
 function minipage(props, ...rchildren) {
