@@ -10,7 +10,10 @@ function genShape(shape) {
     return function(props, ...rchildren) {
         let name = _.get(props, "name", `nodeName${uid(3)}`);
         let position = _.get(props, "attach", "at (current page.north)");
-        let color = _.get(props, "color", "black");
+        let color = ""
+        if(!_.isUndefined(props.color)) {
+            color = `\\color{${props.color}}`
+        }
         props.draw = _.get(props, "draw", "black");
 
         let {
@@ -21,6 +24,7 @@ function genShape(shape) {
             .accepts("fill")
             .accepts("draw")
             .accepts("anchor")
+            .acceptsAs("fontcolor", "text")
             .acceptsAs("minwidth", "minimum width")
             .acceptsAs("minheight", "minimum height")
             .get();
@@ -28,7 +32,7 @@ function genShape(shape) {
         return `
 ${FontCMD}
 \\node [${hd}] (${name}) ${position}{
-\\color{${color}}${FontUID}{}${rchildren.join('')}};`
+${color}${FontUID}{}${rchildren.join('')}};`
     }
 }
 

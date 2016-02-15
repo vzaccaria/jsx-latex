@@ -11,6 +11,10 @@ let {
 function article(props, ...rchildren) {
     let geometry = _.get(props, "geometry", "");
     let preamble = _.get(props, "preamble", "");
+    let colors = _.get(props, "colors", {});
+    colors = _.map(colors, (v, k) => {
+        return `\\definecolor{${k}}{HTML}{${v}}`
+    }).join('\n');
     return `
     \\documentclass{article}
     \\usepackage[T1]{fontenc}
@@ -29,6 +33,7 @@ function article(props, ...rchildren) {
     \\definecolor{red}{HTML}{FB4485}
     \\definecolor{blue}{HTML}{6CE0F1}
     \\usepackage[${geometry}]{geometry}${preamble}
+    ${colors}
     \\begin{document}
     ${rchildren.join("\n")}
     \\end{document}
