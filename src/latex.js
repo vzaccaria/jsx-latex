@@ -69,6 +69,11 @@ function vspace(props) {
     return `\\vspace{${space}}`
 }
 
+function hspace(props) {
+    let space = _.get(props, "space", "0pt");
+    return `\\hspace{${space}}`
+}
+
 function text(props, ...rchildren) {
     let {
         FontUID, FontCMD
@@ -149,6 +154,14 @@ Reaxt.createComponent("smallcaps", txtgen('textsc'));
 Reaxt.createComponent("bold", txtgen('textbf'));
 Reaxt.createComponent("italic", txtgen('emph'));
 Reaxt.createComponent("vspace", vspace);
+Reaxt.createComponent("hspace", hspace);
+
+_.map(["flushright",
+    "flushleft",
+    "center"
+], (it) => {
+    Reaxt.createComponent(it, envgen(it));
+});
 
 _.map(["tiny",
     "footnotesize",

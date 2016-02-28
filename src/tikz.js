@@ -6,6 +6,17 @@ let {
     uid, defineNewFont, parse
 } = Reaxt
 
+function line(props) {
+    let source = _.get(props, "source", '');
+    let dest = _.get(props, "dest", '');
+    let options = _.get(props, "options", []);
+    let curveType = _.get(props, "curveType", '--');
+
+    return `
+    \\draw [${options.join(',')}] (${source}) ${curveType} (${dest});
+`;
+}
+
 function genShape(shape) {
     return function(props, ...rchildren) {
         let name = _.get(props, "name", `nodeName${uid(3)}`);
@@ -59,5 +70,6 @@ Reaxt.createComponent("node", genShape());
 Reaxt.createComponent("circle", genShape("circle"));
 Reaxt.createComponent("rectangle", genShape("rectangle"));
 Reaxt.createComponent("tikz", tikz);
+Reaxt.createComponent("line", line);
 
 module.exports = Reaxt
