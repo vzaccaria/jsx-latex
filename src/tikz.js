@@ -38,6 +38,7 @@ function genShape(shape) {
             .acceptsAs("fontcolor", "text")
             .acceptsAs("minwidth", "minimum width")
             .acceptsAs("minheight", "minimum height")
+            .acceptsAs("innersep", "inner sep")
             .get();
 
         return `
