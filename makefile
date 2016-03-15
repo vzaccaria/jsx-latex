@@ -11,7 +11,8 @@ all:
 default: $(JS_BABEL_TGT) $(JS_MAIN_TGT) $(JS_DOCS_TGT) $(MD_README_TGT)
 
 .OVERRIDES: test
-test: all
+test:
+	@make default
 	./tests/test.sh
 
 refresh-showcase: ./docs/test.jsx
