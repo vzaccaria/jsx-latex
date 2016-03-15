@@ -3,6 +3,7 @@ lib
 api.md
 x.xelatex.tex
 play/x.xelatex.tex
+build
 dist
 tests/common/test0/output.aux
 tests/common/test0/reference.aux

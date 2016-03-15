@@ -16,28 +16,28 @@ function article(props, ...rchildren) {
         return `\\definecolor{${k}}{HTML}{${v}}`
     }).join('\n');
     return `
-    \\documentclass{article}
-    \\usepackage[T1]{fontenc}
-    \\usepackage{fontspec,xunicode,xltxtra}
-    \\usepackage{tikz}
-    \\usepackage{xcolor}
-    \\usepackage{setspace}
-    \\usepackage{enumitem}
-    \\definecolor{white}{RGB}{255,255,255}
-    \\definecolor{darkgray}{HTML}{333333}
-    \\definecolor{gray}{HTML}{4D4D4D}
-    \\definecolor{lightgray}{HTML}{999999}
-    \\definecolor{green}{HTML}{C2E15F}
-    \\definecolor{orange}{HTML}{FDA333}
-    \\definecolor{purple}{HTML}{D3A4F9}
-    \\definecolor{red}{HTML}{FB4485}
-    \\definecolor{blue}{HTML}{6CE0F1}
-    \\usepackage[${geometry}]{geometry}${preamble}
-    ${colors}
-    \\begin{document}
-    ${rchildren.join("\n")}
-    \\end{document}
-    `;
+\\documentclass{article}
+\\usepackage[T1]{fontenc}
+\\usepackage{fontspec,xunicode,xltxtra}
+\\usepackage{tikz}
+\\usepackage{xcolor}
+\\usepackage{setspace}
+\\usepackage{enumitem}
+\\definecolor{white}{RGB}{255,255,255}
+\\definecolor{darkgray}{HTML}{333333}
+\\definecolor{gray}{HTML}{4D4D4D}
+\\definecolor{lightgray}{HTML}{999999}
+\\definecolor{green}{HTML}{C2E15F}
+\\definecolor{orange}{HTML}{FDA333}
+\\definecolor{purple}{HTML}{D3A4F9}
+\\definecolor{red}{HTML}{FB4485}
+\\definecolor{blue}{HTML}{6CE0F1}
+\\usepackage[${geometry}]{geometry}${preamble}
+${colors}
+\\begin{document}
+${rchildren.join("\n")}
+\\end{document}
+`;
 }
 
 function itemize(tag) {
