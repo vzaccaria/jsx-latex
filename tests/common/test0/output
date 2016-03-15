@@ -21,49 +21,49 @@
 
 \begin{tikzpicture}[remember picture,overlay]
 
-\newfontfamily\fontMEir[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontMEir[Scale=1,Color=000000]{Minion Pro}
 \node [rectangle, fill=gray, draw=black, anchor=north, minimum width=\paperwidth, minimum height=4cm] (bgd) at (current page.north){
 \fontMEir{} };
 
-\newfontfamily\fontxIoS[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontxIoS[Scale=1,Color=000000]{Minion Pro}
 \node [rectangle, fill=gray, draw=black, anchor=south, minimum width=\paperwidth, minimum height=5cm] (nodeNamepAl) at (current page.south){
 \fontxIoS{} };
 
-\newfontfamily\fontISWv[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontISWv[Scale=1,Color=000000]{Minion Pro}
 \node [rectangle, draw=black, anchor=south] (nodeNameZMF) at (bgd.south){
 \fontISWv{} \includegraphics[width=1cm]{avatar-vz.jpg} };
 
-\newfontfamily\fontgvrm[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontgvrm[Scale=1,Color=000000]{Minion Pro}
 \node [rectangle, draw=black, anchor=north] (ex1) at (bgd.center){
 \color{white}\fontgvrm{} cips };
 
-\newfontfamily\fontKXhI[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontKXhI[Scale=1,Color=000000]{Minion Pro}
 \node [rectangle, draw=black, anchor=south] (ex2) at (ex1.north){
 \color{white}\fontKXhI{} example2 };
 \end{tikzpicture}
 
-\newfontfamily\fontondD[Scale=1,Color=000000]{LMRoman12 Regular}\noindent\begin{minipage}[t]{4cm}\fontondD{}\includegraphics[width=1cm]{avatar-vz.jpg}
+\newfontfamily\fontondD[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{4cm}\fontondD{}\includegraphics[width=1cm]{avatar-vz.jpg}
 \renewcommand\thesection{\fontIiFj{}\arabic{section}}
 \newfontfamily\fontIiFj[Scale=2,Color=00FF22]{Bebas Neue}
-\newfontfamily\fontqEYs[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontqEYs[Scale=1,Color=000000]{Minion Pro}
 \section*{\fontIiFj{}Prova\hrulefill}
 {\fontqEYs{}
 This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
 }
 \end{minipage}
-\newfontfamily\fontbNfC[Scale=1,Color=000000]{LMRoman12 Regular}\noindent\begin{minipage}[t]{10cm}\fontbNfC{}
+\newfontfamily\fontbNfC[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{10cm}\fontbNfC{}
 \renewcommand\thesection{\fontcRDH{}\arabic{section}}
 \newfontfamily\fontcRDH[Scale=2,Color=00FF22]{Bebas Neue}
-\newfontfamily\fontUOwj[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontUOwj[Scale=1,Color=000000]{Minion Pro}
 \section*{\fontcRDH{}Prova\hrulefill}
 {\fontUOwj{}
 This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
 }
 \end{minipage}
-\newfontfamily\fontDtZI[Scale=1,Color=000000]{LMRoman12 Regular}\noindent\begin{minipage}[c]{2cm}\fontDtZI{}
+\newfontfamily\fontDtZI[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[c]{2cm}\fontDtZI{}
 \renewcommand\thesection{\fontKdyt{}\arabic{section}}
 \newfontfamily\fontKdyt[Scale=2,Color=00FF22]{Bebas Neue}
-\newfontfamily\fontZytR[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontZytR[Scale=1,Color=000000]{Minion Pro}
 \section*{\fontKdyt{}Prova\hrulefill}
 {\fontZytR{}
 This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
@@ -71,8 +71,8 @@ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prov
 \end{minipage}
 
 \renewcommand\thesection{\fontYzKI{}\arabic{section}}
-\newfontfamily\fontYzKI[Scale=1,Color=000000]{LMRoman12 Regular}
-\newfontfamily\fontvZKO[Scale=1,Color=000000]{LMRoman12 Regular}
+\newfontfamily\fontYzKI[Scale=1,Color=000000]{Minion Pro}
+\newfontfamily\fontvZKO[Scale=1,Color=000000]{Minion Pro}
 \section{\fontYzKI{}Prova}
 {\fontvZKO{}
 This is a prova

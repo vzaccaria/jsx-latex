@@ -5,7 +5,7 @@ seedrandom('hello.', { global: true });
 let _ = require('lodash');
 
 
-let defaultfont = "LMRoman12 Regular"
+let defaultfont = "Minion Pro"
 
 let uid = (n) => {
     let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
