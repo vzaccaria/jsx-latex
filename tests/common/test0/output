@@ -6,6 +6,7 @@
 \usepackage{xcolor}
 \usepackage{setspace}
 \usepackage{enumitem}
+\usepackage{multicol}
 \definecolor{white}{RGB}{255,255,255}
 \definecolor{darkgray}{HTML}{333333}
 \definecolor{gray}{HTML}{4D4D4D}
@@ -51,7 +52,7 @@
 This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
 }
 \end{minipage}
-\newfontfamily\fontbNfC[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{10cm}\fontbNfC{}
+\newfontfamily\fontZytR[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{10cm}\fontZytR{}
 \renewcommand\thesection{\fontcRDH{}\arabic{section}}
 \newfontfamily\fontcRDH[Scale=2,Color=00FF22]{Bebas Neue}
 \newfontfamily\fontUOwj[Scale=1,Color=000000]{Minion Pro}
@@ -59,22 +60,30 @@ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prov
 {\fontUOwj{}
 This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
 }
+
+\renewcommand\thesection{\fontbNfC{}\arabic{section}}
+\newfontfamily\fontbNfC[Scale=1,Color=000000]{Minion Pro}
+\newfontfamily\fontKdyt[Scale=1,Color=000000]{Minion Pro}
+\section{\fontbNfC{}prova multicolonna}
+{\fontKdyt{}
+\noindent\setlength\columnsep{2cm}\begin{multicols}{2}Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu, wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.  Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.\end{multicols}
+}
 \end{minipage}
-\newfontfamily\fontDtZI[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[c]{2cm}\fontDtZI{}
-\renewcommand\thesection{\fontKdyt{}\arabic{section}}
-\newfontfamily\fontKdyt[Scale=2,Color=00FF22]{Bebas Neue}
-\newfontfamily\fontZytR[Scale=1,Color=000000]{Minion Pro}
-\section*{\fontKdyt{}Prova\hrulefill}
-{\fontZytR{}
+\newfontfamily\fontvZKO[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[c]{2cm}\fontvZKO{}
+\renewcommand\thesection{\fontDtZI{}\arabic{section}}
+\newfontfamily\fontDtZI[Scale=2,Color=00FF22]{Bebas Neue}
+\newfontfamily\fontYzKI[Scale=1,Color=000000]{Minion Pro}
+\section*{\fontDtZI{}Prova\hrulefill}
+{\fontYzKI{}
 This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
 }
 \end{minipage}
 
-\renewcommand\thesection{\fontYzKI{}\arabic{section}}
-\newfontfamily\fontYzKI[Scale=1,Color=000000]{Minion Pro}
-\newfontfamily\fontvZKO[Scale=1,Color=000000]{Minion Pro}
-\section{\fontYzKI{}Prova}
-{\fontvZKO{}
+\renewcommand\thesection{\fontqLhk{}\arabic{section}}
+\newfontfamily\fontqLhk[Scale=1,Color=000000]{Minion Pro}
+\newfontfamily\fontLhfs[Scale=1,Color=000000]{Minion Pro}
+\section{\fontqLhk{}Prova}
+{\fontLhfs{}
 This is a prova
 }
 
