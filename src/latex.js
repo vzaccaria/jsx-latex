@@ -110,13 +110,13 @@ function multicolumn(props, ...rchildren) {
 
 function minipage(props, ...rchildren) {
   let width = _.get(props, "width", "\\textwidth");
-  let align = _.get(props, "align", "c");
+  let align = _.get(props, "align", "t");
   let height = _.get(props, "height", undefined);
   let opts = "";
   if (_.isUndefined(height)) {
     opts = `[${align}]{${width}}`;
   } else {
-    opts = `[${align}]{${height}}{${width}}`;
+    opts = `[${align}][${height}]{${width}}`;
   }
   let {
     FontUID,
