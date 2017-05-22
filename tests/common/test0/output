@@ -52,7 +52,7 @@
 This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$ This is a prova $x+y$
 }
 \end{minipage}
-\newfontfamily\fontZytR[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{10cm}\fontZytR{}
+\newfontfamily\fontZytR[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{1cm}{10cm}\fontZytR{}
 \renewcommand\thesection{\fontcRDH{}\arabic{section}}
 \newfontfamily\fontcRDH[Scale=2,Color=00FF22]{Bebas Neue}
 \newfontfamily\fontUOwj[Scale=1,Color=000000]{Minion Pro}

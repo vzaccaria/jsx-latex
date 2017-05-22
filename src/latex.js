@@ -111,16 +111,23 @@ function multicolumn(props, ...rchildren) {
 function minipage(props, ...rchildren) {
   let width = _.get(props, "width", "\\textwidth");
   let align = _.get(props, "align", "c");
+  let height = _.get(props, "height", undefined);
+  let opts = "";
+  if (_.isUndefined(height)) {
+    opts = `[${align}]{${width}}`;
+  } else {
+    opts = `[${align}]{${height}}{${width}}`;
+  }
   let {
     FontUID,
     FontCMD
   } = defineNewFont(_.get(props, "style", {}));
   if (_.isUndefined(FontCMD)) {
-    return `\\noindent\\begin{minipage}[${align}]{${width}}${rchildren.join(
+    return `\\noindent\\begin{minipage}${opts}${rchildren.join(
       ""
     )}\\end{minipage}`;
   } else {
-    return `${FontCMD}\\noindent\\begin{minipage}[${align}]{${width}}${FontUID}{}${rchildren.join(
+    return `${FontCMD}\\noindent\\begin{minipage}${opts}${FontUID}{}${rchildren.join(
       ""
     )}\\end{minipage}`;
   }

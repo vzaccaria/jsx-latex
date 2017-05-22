@@ -54,7 +54,7 @@ Reaxt.render(
             This is a prova $x+y$
         </section>
         </minipage>
-        <minipage width="10cm" align="t">
+        <minipage width="10cm" height="1cm" align="t">
         <section title="Prova" style={{title}}>
             This is a prova $x+y$
             This is a prova $x+y$
