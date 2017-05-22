@@ -19,7 +19,7 @@
 \usepackage[margin={2cm, 2cm}, paper=a4paper]{geometry}
 
 \begin{document}
-\newfontfamily\fontnQaN[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{4cm}\fontnQaN{}\includegraphics[width=1cm]{avatar-vz.jpg}\newfontfamily\fontpkxK[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[c]{2.9cm}\fontpkxK{}
+\newfontfamily\fontnQaN[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{4cm}\fontnQaN{}\includegraphics[width=1cm]{avatar-vz.jpg}\newfontfamily\fontpkxK[Scale=1,Color=000000]{Minion Pro}\noindent\begin{minipage}[t]{2.9cm}\fontpkxK{}
 \renewcommand\thesection{\fontwUmO{}\arabic{section}}
 \newfontfamily\fontwUmO[Scale=2,Color=888888]{Bebas Neue}
 \newfontfamily\fontDhrq[Scale=1,Color=000000]{Minion Pro}
